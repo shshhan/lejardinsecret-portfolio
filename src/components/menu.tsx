@@ -32,15 +32,8 @@ export default function Menu() {
     return 'gap-6';
   }
 
-  const getMenuWidth = () => {
-    if (isBelow('sm')) return 'w-[80vw]';
-    if (isBelow('md')) return 'w-[60vw]';
-    if (isBelow('lg')) return 'w-[40vw]';
-    return 'w-[30vw]';
-  }
-
   return (
-    <nav className={`flex flex-col items-center justify-center ${getMenuGap()} ${getMenuWidth()} pointer-events-auto`}>
+    <nav className={`flex flex-col items-center justify-center ${getMenuGap()} pointer-events-auto`}>
       {menuItems.map((item, index) => (
         <motion.div
           key={item.name}
@@ -53,7 +46,7 @@ export default function Menu() {
         >
           <Link
             href={item.href}
-            className={`${getMenuTextSize()} font-medium tracking-wider ${item.color} transition-all duration-300 hover:opacity-80`}
+            className={`${getMenuTextSize()} font-light tracking-wider ${item.color} transition-all duration-300 hover:opacity-80`}
           >
             {item.name}
           </Link>

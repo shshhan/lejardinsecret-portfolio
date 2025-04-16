@@ -14,7 +14,6 @@ export const breakpoints = {
 export type Breakpoint = keyof typeof breakpoints
 
 export function useResponsive() {
-  // 초기값을 0으로 설정하고 useEffect에서 실제 값으로 업데이트
   const [windowSize, setWindowSize] = useState({
     width: 0,
     height: 0
@@ -42,11 +41,6 @@ export function useResponsive() {
     // Remove event listener on cleanup
     return () => window.removeEventListener('resize', handleResize)
   }, []) // Empty array ensures that effect is only run on mount and unmount
-
-  // 디버깅을 위한 콘솔 로그 추가
-  useEffect(() => {
-    console.log('Current window width:', windowSize.width)
-  }, [windowSize.width])
 
   // Helper functions to check current breakpoint
   const isAbove = (breakpoint: Breakpoint) => windowSize.width >= breakpoints[breakpoint]

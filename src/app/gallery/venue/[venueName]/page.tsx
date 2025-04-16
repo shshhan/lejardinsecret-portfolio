@@ -5,14 +5,14 @@ import { getVenueImages } from "@/lib/venues"
 import { ChevronLeft } from "lucide-react"
 
 interface VenuePageProps {
-  params: {
+  params: Promise<{
     venueName: string
-  }
+  }>
 }
 
 export default async function VenuePage({ params }: VenuePageProps) {
-  // Next.js 15.3.0에서는 params가 Promise일 수 있으므로 await 처리
-  const resolvedParams = await Promise.resolve(params)
+  // Next.js 15.3.0에서는 params가 Promise이므로 await 처리
+  const resolvedParams = await params
   const { venueName } = resolvedParams
 
   try {

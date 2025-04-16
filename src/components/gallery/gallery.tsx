@@ -7,7 +7,6 @@ import { fetchVenues, Venue } from "@/lib/venues-client"
 import FilterBar from "./filter-bar"
 
 // Venue 인터페이스는 venues-client.ts에서 가져옴
-
 export default function Gallery() {
   const [venues, setVenues] = useState<Venue[]>([])
   const [filteredVenues, setFilteredVenues] = useState<Venue[]>([])
@@ -98,6 +97,7 @@ export default function Gallery() {
               <div className="mt-4 text-center">
                 <h3 className="text-lg font-medium">{venue.name}</h3>
                 <p className="text-sm text-gray-600 mt-1">Photographer: {venue.photographer}</p>
+              </div>
             </div>
           ))}
         </div>
