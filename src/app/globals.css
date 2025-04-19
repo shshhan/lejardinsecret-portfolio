@@ -58,6 +58,52 @@ body {
   width: 100%;
 }
 
+/* 갤러리 이미지 컨테이너 스타일 조정 */
+@media (max-width: 1024px) {
+  .gallery-image-container {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  /* 이미지 자체에도 라운드 처리 적용 */
+  .gallery-image {
+    border-radius: 0.5rem;
+  }
+}
+
+/* 헤더 요소 높이 일관성 조정 */
+header a,
+header button {
+  display: flex;
+  align-items: center;
+  height: 40px; /* 모든 요소의 기본 높이 */
+}
+
+/* Instagram 아이콘 크기 조정 */
+header a[aria-label="Instagram"] svg {
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 768px) {
+  header a[aria-label="Instagram"] svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 640px) {
+  header a,
+  header button {
+    height: 36px; /* 작은 화면에서의 높이 */
+  }
+
+  header a[aria-label="Instagram"] svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
