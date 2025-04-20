@@ -59,7 +59,7 @@ export default function BenefitsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-light mb-8 text-center">BENEFITS</h1>
+          <h1 className="text-3xl font-light mb-16 text-center">BENEFITS</h1>
 
           <p className="text-center mb-12 max-w-2xl mx-auto">
             When you choose our services, you're not just getting photographs – you're investing in an experience and

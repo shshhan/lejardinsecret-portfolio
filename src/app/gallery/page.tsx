@@ -102,7 +102,7 @@ export default function GalleryPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-light mb-8 text-center">GALLERY</h1>
+          <h1 className="text-3xl font-light mb-16 text-center">GALLERY</h1>
 
           {/* Filtering System */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">

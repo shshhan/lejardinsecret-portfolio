@@ -6,10 +6,10 @@ import { motion } from "framer-motion"
 import { useResponsive } from "@/hooks/use-responsive"
 
 const menuItems = [
-  { name: "ABOUT", href: "/about", color: "text-green-600" },
-  { name: "GALLERY", href: "/gallery", color: "text-green-700" },
-  { name: "PACKAGES", href: "/packages", color: "text-green-800" },
-  { name: "BENEFITS", href: "/benefits", color: "text-green-900" },
+  { name: "ABOUT", href: "/about", color: "text-gray-800" },
+  { name: "GALLERY", href: "/gallery", color: "text-gray-800" },
+  { name: "PACKAGES", href: "/packages", color: "text-gray-800" },
+  { name: "BENEFITS", href: "/benefits", color: "text-gray-800" },
 ]
 
 export default function Menu() {
