@@ -62,7 +62,7 @@ export default function PackagesPage() {
     <main className="min-h-screen">
       <div className="container mx-auto px-4 pt-24 pb-16">
         <motion.div
-          className="max-w-5xl mx-auto"
+          className="max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -79,13 +79,11 @@ export default function PackagesPage() {
               >
                 <Card className="h-full flex flex-col">
                   <CardHeader>
-                    <CardTitle>{pkg.title}</CardTitle>
-                    <div className="text-large font-light mt-2">대표작가: {pkg.headPrice}</div>
-                    <div className="text-large font-light mt-1">벨작가: {pkg.bellPrice}</div>
-                    <CardDescription className="mt-2">{pkg.description}</CardDescription>
+                    <CardTitle className="mb-4">{pkg.title}</CardTitle>
+                    <CardDescription>{pkg.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                    <ul className="space-y-2">
+                  <CardContent className="flex-grow pt-2 flex flex-col">
+                    <ul className="space-y-2 mb-auto">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
@@ -93,6 +91,12 @@ export default function PackagesPage() {
                         </li>
                       ))}
                     </ul>
+                    <div className="mt-4 pt-3 border-t border-gray-200">
+                      <div className="text-large font-light">
+                        <div>대표작가: {pkg.headPrice}</div>
+                        <div>벨작가:&nbsp;&nbsp;&nbsp; {pkg.bellPrice}</div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
