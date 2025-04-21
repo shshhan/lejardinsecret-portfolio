@@ -4,10 +4,15 @@ import { motion } from "framer-motion"
 import { useMenu } from "@/context/menu-context"
 import Link from "next/link"
 import { useResponsive } from "@/hooks/use-responsive"
+import { useState, useEffect } from "react"
 
 export default function Header() {
   const { isMenuOpen, toggleMenu } = useMenu()
   const { isBelow } = useResponsive()
+
+  // State for header hover and scroll position
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false)
+  const [scrollPosition, setScrollPosition] = useState(0)
 
   // 반응형 글씨 크기 및 패딩 조정
   const getTitleSize = () => {
@@ -34,10 +39,33 @@ export default function Header() {
     return 28;
   }
 
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Determine element opacity based on scroll position and hover state
+  const getElementOpacity = () => {
+    // Always fully opaque when menu is open or when hovering
+    if (isMenuOpen || isHeaderHovered) return 'opacity-100'
+
+    // Semi-transparent when scrolled down and not hovering
+    return scrollPosition > 20 ? 'opacity-40' : 'opacity-100'
+  }
+
   return (
-    <header className={`fixed top-0 w-full flex justify-between items-center ${getHeaderPadding()} z-50`}>
+    <header
+      className={`fixed top-0 w-full flex justify-between items-center ${getHeaderPadding()} z-50 transition-all duration-300`}
+      onMouseEnter={() => setIsHeaderHovered(true)}
+      onMouseLeave={() => setIsHeaderHovered(false)}
+    >
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <Link href="/" className={`${getTitleSize()} font-light tracking-wider hover:opacity-80 transition-opacity`}>
+        <Link href="/" className={`${getTitleSize()} font-light tracking-wider hover:opacity-100 transition-all ${getElementOpacity()}`}>
           Le Jardin Secret
         </Link>
       </motion.div>
@@ -48,7 +76,7 @@ export default function Header() {
           href="https://pf.kakao.com/_Uykxoxj"
           target="_blank"
           rel="noopener noreferrer"
-          className={`${getButtonSize()} border border-black font-medium rounded-md hover:bg-black hover:text-white transition-colors duration-300`}
+          className={`${getButtonSize()} border border-black font-medium rounded-md hover:bg-black hover:text-white transition-all duration-300 ${getElementOpacity()}`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -60,7 +88,7 @@ export default function Header() {
           href="https://www.instagram.com/lejardinsecret__/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-black flex items-center justify-center"
+          className={`text-black flex items-center justify-center transition-all ${getElementOpacity()}`}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Instagram"
@@ -85,24 +113,24 @@ export default function Header() {
 
         {/* Hamburger Menu */}
         <motion.button
-          className={`${isBelow('sm') ? 'w-8 h-8' : 'w-9 h-9'} flex flex-col justify-center items-center gap-1.5 z-50`}
+          className={`${isBelow('sm') ? 'w-8 h-8' : 'w-9 h-9'} flex flex-col justify-center items-center gap-1.5 z-50 transition-all ${getElementOpacity()}`}
           onClick={toggleMenu}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Toggle menu"
         >
           <motion.span
-            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block`}
+            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block transition-all ${getElementOpacity()}`}
             animate={isMenuOpen ? { rotate: 45, y: isBelow('sm') ? 6 : 7 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
           />
           <motion.span
-            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block`}
+            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block transition-all ${getElementOpacity()}`}
             animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
             transition={{ duration: 0.3 }}
           />
           <motion.span
-            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block`}
+            className={`${isBelow('sm') ? 'w-6' : 'w-7'} h-0.5 bg-black block transition-all ${getElementOpacity()}`}
             animate={isMenuOpen ? { rotate: -45, y: isBelow('sm') ? -6 : -7 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.3 }}
           />
