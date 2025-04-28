@@ -63,7 +63,13 @@ export default function BenefitsPage() {
     {
       id: 1,
       title: "예약문의하기 전 받은 짝꿍 코드가 있을 경우",
-      description: "예약문의하실 때, 받은 다른 분의 짝꿍 코드를 함께 전달해 주세요. (이미 계약을 완료하신 두 신부님이 서로 짝꿍은 불가하므로 꼭 예약문의 시점에 받은 코드를 전달해 주세요)"
+      description: (
+        <>
+          예약문의하실 때, 받은 다른 분의 짝꿍 코드를 함께 전달해 주세요.
+          <br />
+          (이미 계약을 완료하신 두 신부님이 서로 짝꿍은 불가하므로 꼭 예약문의 시점에 받은 코드를 전달해 주세요)
+        </>
+      )
     },
     {
       id: 2,
@@ -144,88 +150,47 @@ export default function BenefitsPage() {
           </motion.section>
 
           {/* 짝꿍 할인 적용 방법 섹션 */}
-          <motion.section
-            className="mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <h2 className="text-2xl font-light mb-8 pb-2 border-b border-gray-200">짝꿍 할인 적용하는 방법</h2>
+          <h2 className="text-2xl font-light mb-2 pb-2 border-b border-gray-200">짝꿍 할인 적용하는 방법</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {partnerDiscountMethods.map((method, index) => (
-                <motion.div
-                  key={method.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <CardHeader>
-                      <CardTitle className="text-lg">{method.id}. {method.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600">{method.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+          <div className="pl-4 border-l-2 border-gray-200 mt-6 mb-12">
+            <ul className="space-y-6">
+              {partnerDiscountMethods.map(method => (
+                <li key={method.id}>
+                  <div className="mb-2">
+                    <span className="font-semibold">{method.id}. {method.title}</span>
+                  </div>
+                  <p className="text-gray-600 ml-4">{method.description}</p>
+                </li>
               ))}
-            </div>
-          </motion.section>
+            </ul>
+          </div>
 
-          {/* 참고 사항 섹션 - 두 개의 카드로 구성 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            {/* 짝꿍 할인 관련 참고 사항 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <Users className="h-6 w-6 text-gray-600" />
-                    <CardTitle className="text-xl">짝꿍 할인 관련 참고 사항</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {partnerDiscountNotes.map((note, i) => (
-                      <li key={i} className="flex items-start">
-                        <Dot className="h-6 w-6 text-gray-800 mr-1 flex-shrink-0" />
-                        <span>{note}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.section>
+          {/* 참고 사항 섹션 - 두 개의 컬럼, 각 섹션은 텍스트 나열 레이아웃 */}
+          {/* 짝꿍 할인 관련 참고 사항 */}
+          <h2 className="text-2xl font-light mb-2 pb-2 border-b border-gray-200">짝꿍 할인 관련 참고 사항</h2>
 
+          <div className="mt-6 mb-12">
+            <ul className="space-y-1">
+              {partnerDiscountNotes.map((note, i) => (
+                <li key={i} className="flex items-start">
+                  <Dot className="h-6 w-6 text-gray-800 mr-1 flex-shrink-0" />
+                  <span className="text-gray-600 break-keep hyphens-auto">{note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
             {/* 기타 참고 사항 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-            >
-              <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <Info className="h-6 w-6 text-gray-600" />
-                    <CardTitle className="text-xl">기타 참고하실 사항</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {otherNotes.map((note, i) => (
-                      <li key={i} className="flex items-start">
-                        <Dot className="h-6 w-6 text-gray-800 mr-1 flex-shrink-0" />
-                        <span>{note}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.section>
+
+          <h2 className="text-2xl font-light mb-2 pb-2 border-b border-gray-200">기타 참고하실 사항</h2>
+          <div className="mt-6 mb-12">
+            <ul className="space-y-1">
+              {otherNotes.map((note, i) => (
+                <li key={i} className="flex items-start">
+                  <Dot className="h-6 w-6 text-gray-800 mr-1 flex-shrink-0" />
+                  <span className="text-gray-600 break-keep hyphens-auto">{note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </motion.div>
       </div>
