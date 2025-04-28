@@ -110,7 +110,7 @@ export default function PackagesPage() {
                     <div className="mt-4 pt-3 border-t border-gray-200">
                       <div className="text-large font-light">
                         <div className="mt-3">대표작가: {pkg.headPrice}</div>
-                        <div>벨작가:&nbsp;&nbsp;&nbsp; {pkg.bellPrice}</div>
+                        <div>&nbsp;&nbsp;&nbsp;벨작가: {pkg.bellPrice}</div>
                       </div>
                     </div>
                   </CardContent>
